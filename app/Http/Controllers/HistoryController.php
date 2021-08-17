@@ -21,7 +21,7 @@ class HistoryController extends Controller
     public function index()
     {
 
-
+       
         $kerja      = BuktiKerja::all();
         $history    = DB::table('history')->get();
         $biro       = UnitKerja::all()->first();
@@ -30,7 +30,12 @@ class HistoryController extends Controller
                         ->where('archive',0)
                         ->paginate(5);
         
-        return view('history.index',compact('history','bulan','kerja','biro'));
+        $his = DB::table('history')
+        ->whereIn('id_bukti_kerja',$kerja->pluck('id'))
+        ->whereIn('id_bulan',$bulan->pluck('id'))
+        ->get();
+      
+        return view('history.index',compact('history','bulan','kerja','biro','his'));
 
 
     }
@@ -49,7 +54,9 @@ class HistoryController extends Controller
         ->join('users','unit_kerja.users_id','=','users.id')
         ->where('users_id',Auth::user()->id)
         ->get()->first();
-        return view('history.create')->with('id_bukti_kerja',$request->id_bukti_kerja)
+
+        return view('history.create')
+        ->with('id_bukti_kerja',$request->id_bukti_kerja)
         ->with('id_bulan',$request->id_bulan)
         ->with('biro',$biro->jum_staff);
     }

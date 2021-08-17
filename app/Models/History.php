@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Auth;
 class History extends Model
 {
     use HasFactory;
@@ -24,6 +24,11 @@ class History extends Model
 
     public function buktikerja(){
         return $this->belongsTo(BuktiKerja::class,'id_bukti_kerja');
+    }
+  
+    public function scopeHistory($query){
+        
+        return $query->where('users_id',Auth::user()->id);
     }
 
 }

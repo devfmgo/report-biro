@@ -23,4 +23,5 @@ class BuktiKerja extends Model
         return $this->hasMany(History::class);
     }
 
+
 }
