@@ -7,7 +7,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/Logo-NF.png') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +38,7 @@
         </main>
     </div>
     @include('sweetalert::alert')
-    {{-- script modal  --}}
+    {{-- script modal --}}
     <script type="text/javascript">
         function toggleModal(modalID) {
             document.getElementById(modalID).classList.toggle("hidden");
@@ -45,7 +46,6 @@
             document.getElementById(modalID).classList.toggle("flex");
             document.getElementById(modalID + "-backdrop").classList.toggle("flex");
         }
-
     </script>
 
 </body>

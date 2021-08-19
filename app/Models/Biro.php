@@ -17,4 +17,6 @@ class Biro extends Model
     public function unitkerja(){
         return $this->hasMany(UnitKerja::class);
     }
+    
+   
 }

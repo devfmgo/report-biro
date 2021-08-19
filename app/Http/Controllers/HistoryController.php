@@ -21,22 +21,19 @@ class HistoryController extends Controller
     public function index()
     {
 
-       
-        $kerja      = BuktiKerja::all();
-        $history    = DB::table('history')->get();
-        $biro       = UnitKerja::all()->first();
-        $bulan      = Bulan::Where('users_id',Auth::user()->id)
-                        ->orderBy('tanggal','DESC')
-                        ->where('archive',0)
-                        ->paginate(5);
         
-        $his = DB::table('history')
-        ->whereIn('id_bukti_kerja',$kerja->pluck('id'))
-        ->whereIn('id_bulan',$bulan->pluck('id'))
-        ->get();
-      
-        return view('history.index',compact('history','bulan','kerja','biro','his'));
-
+        $kerja      = BuktiKerja::with('deskripsi')->get();
+        $biro       = UnitKerja::with('biro')->user()->first();
+        $bulan      = Bulan::with('user')
+                        ->user()
+                        ->where('archive',0)
+                        ->orderBy('tanggal','DESC')
+                        ->paginate(5);
+        $qbulan     = Bulan::with('user')
+                        ->user()->get();
+        $history    = History::user()->get();
+                   
+        return view('history.index',compact('history','bulan','kerja','biro'));
 
     }
 
@@ -155,17 +152,35 @@ class HistoryController extends Controller
     }
 
     public function archive(){
+       
         $hasilkerja = DB::table('bukti_kerja')
         ->join('history','bukti_kerja.id','=','history.id_bukti_kerja')
         ->get();
         $kerja = BuktiKerja::all();
         $history = DB::table('history')->get();
-        $biro = UnitKerja::all()->first();
+        $biro = UnitKerja::with('biro')->user()->first();;
         $bulan = Bulan::Where('users_id',Auth::user()->id)
         ->orderBy('tanggal','DESC')
         ->where('archive',1)
         ->paginate(5);
 
         return view('history.archive',compact('history','bulan','kerja','hasilkerja','biro'));
+    }
+
+    // admin view 
+    public function reportBiro(){
+        
+        $users = DB::table('users')
+        ->join('role_user','users.id','=','role_user.user_id')
+        ->join('unit_kerja','users.id','=','unit_kerja.users_id')
+        ->join('biro','unit_kerja.biro_id','=','biro.id')
+        ->where('role_id',2)
+        ->get();
+      
+        $report = DB::table('history')
+                    ->join('users','history.users_id','=','users.id')
+                    ->join('bulan','history.id_bulan','=','bulan.id')
+                    ->get();
+       return view('reportbiro.index',compact('report','users'));
     }
 }

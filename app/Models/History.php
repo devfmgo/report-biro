@@ -26,9 +26,11 @@ class History extends Model
         return $this->belongsTo(BuktiKerja::class,'id_bukti_kerja');
     }
   
-    public function scopeHistory($query){
+    public function scopeUser($query){
         
         return $query->where('users_id',Auth::user()->id);
     }
+
+ 
 
 }

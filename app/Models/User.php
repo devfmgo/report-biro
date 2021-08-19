@@ -47,4 +47,12 @@ class User extends Authenticatable
     public function unitkerja(){
         return $this->hasMany(UnitKerja::class);
     }
+
+    public function bulan(){
+        return $this->hasMany(Bulan::class);
+    }
+
+    public function scopeRoleUser($query){
+        return $query->where('role_id',2);
+    }
 }

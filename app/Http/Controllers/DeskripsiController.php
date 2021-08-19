@@ -15,7 +15,7 @@ class DeskripsiController extends Controller
      */
     public function index()
     {
-        return view('deskripsi.index')->with('deskripsi',Deskripsi::all());
+        return view('deskripsi.index')->with('deskripsi',Deskripsi::paginate(5));
     }
 
     /**

@@ -27,6 +27,10 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('archive', 'App\Http\Controllers\HistoryController@archive')->name('archive');
     Route::resource('bulan', 'App\Http\Controllers\BulanController');
 });
+Route::group(['middleware'=>['auth','role:admin']],function(){
+    Route::get('/report-biro','App\Http\Controllers\HistoryController@reportBiro')->name('reportbiro.index');
+
+});
 
 Route::group(['middleware'=>['auth','role:user']],function(){
     Route::get('/dashboard/profile','App\Http\Controllers\DashboardController@profile')->name('dashboard.profile');
