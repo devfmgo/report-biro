@@ -17,14 +17,14 @@
 
                     <table class="min-w-max w-full table-auto">
                         <thead>
-                            <tr class=" text-white bg-indigo-400 uppercase text-sm leading-normal">
+                            <tr class=" text-white bg-indigo-400 uppercase text-xs font-extrabold leading-normal">
 
                                 <th class="py-3 px-6 text-left">Nama Biro</th>
                                 <th class="py-3 px-6 text-center">Jumlah Staff</th>
                                 <th class="py-3 px-6 text-center">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="text-gray-600 text-sm font-light">
+                        <tbody class="text-gray-600 text-xs font-bold">
                             @foreach ($biro as $data)
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
 
