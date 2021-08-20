@@ -76,6 +76,13 @@
                                 <div class="flex flex-col text-sm font-bold">
                                     <div
                                         class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex text-xs font-bold text-gray-900">
+                                        <x-nav-link :href="route('user.index')"
+                                            :active="request()->routeIs('user.index')">
+                                            {{ __('User Account') }}
+                                        </x-nav-link>
+                                    </div>
+                                    <div
+                                        class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex text-xs font-bold text-gray-900">
                                         <x-nav-link :href="route('biro.index')"
                                             :active="request()->routeIs('biro.index')">
                                             {{ __('Biro') }}
