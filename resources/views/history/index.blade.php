@@ -56,8 +56,6 @@
                         d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
             </div>
-
-
         </div>
     @endif
 
@@ -145,31 +143,37 @@
                             <tbody>
 
                                 @foreach ($kerja as $datakerja)
+                                    <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row
+                                flex-wrap lg:flex-no-wrap mb-10 lg:mb-0 text-xs font-medium text-gray-600 ">
 
-                                    <tr
-                                        class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0 text-xs font-medium text-gray-600 ">
-                                        <td
-                                            class="text-left w-full lg:w-auto p-3    border-b   lg:table-cell relative lg:static ">
+                                        {{-- View List Kerja --}}
+                                        <td class="text-left w-full lg:w-auto p-3 border-b lg:table-cell relative lg:static
+                                ">
                                             {{ $datakerja->title }}
                                         </td>
 
-                                        <td
-                                            class="w-full lg:w-auto p-3  border-b lg:table-cell relative lg:static text-center">
+                                        {{-- View P1 --}}
+                                        <td class="w-full lg:w-auto p-3 border-b lg:table-cell relative lg:static
+                                text-center">
+
                                             @php
-                                                $history = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
+                                                
+                                                $historyP1 = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
                                             @endphp
-                                            @forelse ($history as $datahistory)
+                                            @forelse ($historyP1 as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
                                                     $data_hasil = json_decode($datahistory->P2);
                                                 @endphp
                                                 @if ($datahistory->id_bukti_kerja === $datakerja->id && $datahistory->id_bulan === $databulan->id)
-                                                    <div class="bg-green-100 rounded-full flex p-2"><span
-                                                            class="text-green-700 font-bold ">
-                                                            {{ $d1 = $data_target->target_p1 }}</span> / <span
-                                                            class="{{ $data_target->target_p1 == $data_hasil->hasil_p1 ? 'text-green-700' : 'text-red-500' }} font-bold">{{ $data_hasil->hasil_p1 }}</span>
+                                                    <div class="bg-green-100 rounded-full flex p-2">
+                                                        <span class="text-green-700 font-bold ">
+                                                            {{ $d1 = $data_target->target_p1 }}</span> /
+                                                        <span class="{{ $data_target->target_p1 == $data_hasil->hasil_p1 ? 'text-green-700' : 'text-red-500' }}
+                                                font-bold">
+                                                            {{ $data_hasil->hasil_p1 }}
+                                                        </span>
                                                     </div>
-
                                                 @endif
                                             @empty
                                                 <div
@@ -179,9 +183,13 @@
 
                                         </td>
 
+                                        {{-- View P2 --}}
                                         <td
                                             class="w-full lg:w-auto p-3   border-b    lg:table-cell relative lg:static text-center">
-                                            @forelse ($history as $datahistory)
+                                            @php
+                                                $historyP2 = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
+                                            @endphp
+                                            @forelse ($historyP2->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id) as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
                                                     $data_hasil = json_decode($datahistory->P2);
@@ -200,9 +208,13 @@
                                             @endforelse
                                         </td>
 
+                                        {{-- View P3 --}}
                                         <td
                                             class="w-full lg:w-auto p-3   border-b   lg:table-cell relative lg:static text-center">
-                                            @forelse ($history as $datahistory)
+                                            @php
+                                                $historyP3 = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
+                                            @endphp
+                                            @forelse ($historyP3 as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
                                                     $data_hasil = json_decode($datahistory->P2);
@@ -221,9 +233,13 @@
                                             @endforelse
                                         </td>
 
+                                        {{-- View P4 --}}
                                         <td
                                             class="w-full lg:w-auto p-3   border-b   lg:table-cell relative lg:static text-center">
-                                            @forelse ($history as $datahistory)
+                                            @php
+                                                $historyP4 = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
+                                            @endphp
+                                            @forelse ($historyP4 as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
                                                     $data_hasil = json_decode($datahistory->P2);
@@ -243,26 +259,40 @@
                                             @endforelse
                                         </td>
 
+                                        {{-- View Total --}}
                                         <td
                                             class="w-full lg:w-auto p-3   border-b   lg:table-cell relative lg:static text-left">
-                                            @forelse ($history as $datahistory)
+                                            @php
+                                                $historyP5 = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
+                                            @endphp
+                                            @forelse ($historyP5 as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
                                                     $data_hasil = collect(json_decode($datahistory->P2));
                                                 @endphp
                                                 <div
                                                     class="bg-yellow-200 rounded-full p-2 font-bold text-gray-900 text-center">
-                                                    {{ ceil($data_hasil->sum() / 4) }} </div>
+
+                                                    @if ($datakerja->id === 8)
+                                                        {{ ceil(($data_hasil->sum() / 4 / $biro->biro->jum_staff) * 100) }}
+                                                    @else
+                                                        {{ ceil($data_hasil->sum() / 4) }}
+                                                    @endif
+                                                </div>
                                             @empty
                                                 <div
                                                     class="bg-yellow-200 rounded-full p-2 font-bold text-gray-900 text-center">
                                                     0 </div>
                                             @endforelse
                                         </td>
-                                        {{-- code kendala --}}
+
+                                        {{-- View kendala --}}
                                         <td
                                             class="w-full lg:w-auto p-3   border-b   lg:table-cell relative lg:static text-center">
-                                            @forelse ($history as $datahistory)
+                                            @php
+                                                $historyP6 = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
+                                            @endphp
+                                            @forelse ($historyP6 as $datahistory)
                                                 @if ($datahistory->kendala !== null)
                                                     <div class="relative sm:max-w-xl sm:mx-auto">
                                                         <div
@@ -297,10 +327,14 @@
                                                 -
                                             @endforelse
                                         </td>
-                                        {{-- code catatan --}}
+
+                                        {{-- View catatan --}}
                                         <td
                                             class="w-full lg:w-auto p-3   border-b   lg:table-cell relative lg:static text-center">
-                                            @forelse ($history as $datahistory)
+                                            @php
+                                                $historyP7 = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
+                                            @endphp
+                                            @forelse ($historyP7 as $datahistory)
                                                 @if ($datahistory->catatan !== null)
                                                     <div class="relative sm:max-w-xl sm:mx-auto">
                                                         <div
@@ -333,10 +367,14 @@
                                             @endforelse
 
                                         </td>
+
+                                        {{-- View Action --}}
                                         <td
                                             class="w-full lg:w-auto p-3   border-b   lg:table-cell relative lg:static text-left">
-
-                                            @forelse ($history as $datahistory)
+                                            @php
+                                                $historyP8 = $history->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id);
+                                            @endphp
+                                            @forelse ($historyP8 as $datahistory)
 
                                                 <a href="/history/{{ $datahistory->id }}/edit"
                                                     class="text-gray-100 font-bold bg-blue-400 w-24 p-2 rounded-full text-xs shadow-sm block">Update

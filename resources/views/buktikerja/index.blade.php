@@ -17,13 +17,13 @@
 
                     <table class="min-w-max w-full table-auto">
                         <thead>
-                            <tr class=" text-white bg-indigo-400 uppercase text-sm leading-normal">
+                            <tr class=" text-white bg-indigo-400 uppercase text-xs font-semibold leading-normal">
                                 <th class="py-3 px-6 text-left font-semibold">Deskripsi</th>
                                 <th class="py-3 px-6 text-left font-semibold">Title</th>
                                 <th class="py-3 px-6 text-center font-semibold">Actions</th>
                             </tr>
                         </thead>
-                        <tbody class="text-gray-600 text-sm font-light">
+                        <tbody class="text-gray-600 text-xs font-semibold">
                             @foreach ($kerja as $data)
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
                                     <td class="py-3 px-6 text-left capitalize font-medium">

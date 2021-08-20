@@ -6,8 +6,6 @@
         <a href="/biro/create"
             class=" text-xs float-right bg-purple-400 rounded-full px-8 text-white font-extrabold p-3 relative bottom-7">
             Create Biro</a>
-
-
     </x-slot>
 
     <div class="py-12">

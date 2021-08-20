@@ -25,14 +25,12 @@ class HistoryController extends Controller
         $kerja      = BuktiKerja::with('deskripsi')->get();
         $biro       = UnitKerja::with('biro')->user()->first();
         $bulan      = Bulan::with('user')
-                        ->user()
                         ->where('archive',0)
                         ->orderBy('tanggal','DESC')
                         ->paginate(5);
-        $qbulan     = Bulan::with('user')
-                        ->user()->get();
+
         $history    = History::user()->get();
-                   
+        
         return view('history.index',compact('history','bulan','kerja','biro'));
 
     }

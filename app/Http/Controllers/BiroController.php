@@ -65,7 +65,6 @@ class BiroController extends Controller
      */
     public function edit($id)
     {
-
         return view('biro.edit')->with('biro',Biro::where('id',$id)->first());
     }
 
