@@ -22,14 +22,14 @@ class HistoryController extends Controller
     {
 
         
-        $kerja      = BuktiKerja::with('deskripsi')->get();
-        $biro       = UnitKerja::with('biro')->user()->first();
-        $bulan      = Bulan::with('user')
+        $kerja = BuktiKerja::with('deskripsi')->get();
+        $biro  = UnitKerja::with('biro')->user()->first();
+        $bulan = Bulan::with('user')
                         ->where('archive',0)
                         ->orderBy('tanggal','DESC')
                         ->paginate(5);
 
-        $history    = History::user()->get();
+        $history = History::user()->get();
         
         return view('history.index',compact('history','bulan','kerja','biro'));
 
@@ -69,19 +69,19 @@ class HistoryController extends Controller
             'target_p2' => 'required',
             'target_p3' => 'required',
             'target_p4' => 'required',
-            'kendala' =>'',
-            'catatan'=>''
+            'kendala'   => '',
+            'catatan'   => ''
         ]);
-        $target = $request->only('target_p1','target_p2','target_p3','target_p4');
-        $hasil = ['hasil_p1'=>0,'hasil_p2'=>0,'hasil_p3'=>0,'hasil_p4'=>0];
-        $targetArray['data'] = json_encode($target);
-        $hasilArray['hasil'] = json_encode($hasil);
+                                      $target   = $request->only('target_p1','target_p2','target_p3','target_p4');
+                                      $hasil    = ['hasil_p1'=>0,'hasil_p2'=>0,'hasil_p3'=>0,'hasil_p4'=>0];
+                         $targetArray['data']   = json_encode($target);
+                         $hasilArray  ['hasil'] = json_encode($hasil);
         History::create([
-            'users_id'=>Auth::user()->id,
-            'id_bukti_kerja'=>$request->id_bukti_kerja,
-            'id_bulan'=>$request->id_bulan,
-            'P1'=>$targetArray['data'],
-            'P2'=>$hasilArray['hasil']
+            'users_id'       => Auth::user()->id,
+            'id_bukti_kerja' => $request->id_bukti_kerja,
+            'id_bulan'       => $request->id_bulan,
+            'P1'             => $targetArray['data'],
+            'P2'             => $hasilArray['hasil']
         ]);
         return redirect('history')->withToastSuccess('Created Successfully !');
 
@@ -125,15 +125,15 @@ class HistoryController extends Controller
             'hasil_p2' => 'required',
             'hasil_p3' => 'required',
             'hasil_p4' => 'required',
-            'kendala' =>'',
-            'catatan'=>''
+            'kendala'  => '',
+            'catatan'  => ''
         ]);
-        $hasil = ['hasil_p1'=>$request->hasil_p1,'hasil_p2'=>$request->hasil_p2,'hasil_p3'=>$request->hasil_p3,'hasil_p4'=>$request->hasil_p4];
-        $hasilArray['hasil'] = json_encode($hasil);
+                                    $hasil   = ['hasil_p1'=>$request->hasil_p1,'hasil_p2'=>$request->hasil_p2,'hasil_p3'=>$request->hasil_p3,'hasil_p4'=>$request->hasil_p4];
+                        $hasilArray['hasil'] = json_encode($hasil);
         History::find($id)->update([
-            'P2'=>$hasilArray['hasil'],
-            'kendala'=>$request->kendala,
-            'catatan'=>$request->catatan
+            'P2'      => $hasilArray['hasil'],
+            'kendala' => $request->kendala,
+            'catatan' => $request->catatan
         ]);
         return redirect('history')->withToastSuccess('Updated Successfully !');
     }
@@ -154,10 +154,10 @@ class HistoryController extends Controller
         $hasilkerja = DB::table('bukti_kerja')
         ->join('history','bukti_kerja.id','=','history.id_bukti_kerja')
         ->get();
-        $kerja = BuktiKerja::all();
+        $kerja   = BuktiKerja::all();
         $history = DB::table('history')->get();
-        $biro = UnitKerja::with('biro')->user()->first();;
-        $bulan = Bulan::Where('users_id',Auth::user()->id)
+        $biro    = UnitKerja::with('biro')->user()->first();;
+        $bulan   = Bulan::Where('users_id',Auth::user()->id)
         ->orderBy('tanggal','DESC')
         ->where('archive',1)
         ->paginate(5);

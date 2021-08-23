@@ -36,13 +36,13 @@ class BiroController extends Controller
     public function store(Request $request)
     {
        $request->validate([
-           'nama_biro'=>'required',
-           'jum_staff'=>'required'
+           'nama_biro' => 'required',
+           'jum_staff' => 'required'
        ]);
 
        Biro::create([
-           'nama_biro'=>$request->nama_biro,
-           'jum_staff'=>$request->jum_staff
+           'nama_biro' => $request->nama_biro,
+           'jum_staff' => $request->jum_staff
        ]);
        return redirect('/biro')->withToastSuccess('Created Successfully!');
     }
@@ -78,13 +78,13 @@ class BiroController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama_biro'=>'required',
-            'jum_staff'=>'required'
+            'nama_biro' => 'required',
+            'jum_staff' => 'required'
         ]);
 
         Biro::where('id',$id)->update([
-            'nama_biro'=>$request->nama_biro,
-            'jum_staff'=>$request->jum_staff
+            'nama_biro' => $request->nama_biro,
+            'jum_staff' => $request->jum_staff
         ]);
 
         return redirect('/biro')->withToastSuccess('Updated Successfully!');
@@ -98,7 +98,7 @@ class BiroController extends Controller
      */
     public function destroy($id)
     {
-        Biro::where('id',$id)->delete();
+        Biro:: where('id',$id)->delete();
         return redirect('/biro')->withToastSuccess('Deleted Successfully!');
     }
 }

@@ -38,12 +38,12 @@ class UnitKerjaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'biro_id'=>'required'
+            'biro_id' => 'required'
         ]);
 
         UnitKerja::create([
-            'biro_id'=>$request->biro_id,
-            'users_id'=>Auth::user()->id
+            'biro_id'  => $request->biro_id,
+            'users_id' => Auth::user()->id
         ]);
 
         return redirect('/unitkerja')->withToastSuccess('Created Successfully!');
@@ -81,11 +81,11 @@ class UnitKerjaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'biro_id'=>'required'
+            'biro_id' => 'required'
         ]);
 
         UnitKerja::where('id',$id)->update([
-            'biro_id'=> $request->biro_id
+            'biro_id' => $request->biro_id
         ]);
         return redirect('/unitkerja')->withToastSuccess('Updated Successfully!');
     }
@@ -98,7 +98,7 @@ class UnitKerjaController extends Controller
      */
     public function destroy($id)
     {
-        UnitKerja::where('id',$id)->delete();
+        UnitKerja:: where('id',$id)->delete();
         return redirect('/unitkerja')->withToastSuccess('Deleted Successfully!');
     }
 }

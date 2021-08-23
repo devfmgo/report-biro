@@ -39,14 +39,14 @@ class BuktiKerjaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'id_deskripsi'=>'required',
+            'title'        => 'required',
+            'id_deskripsi' => 'required',
 
         ]);
 
         BuktiKerja::create([
-            'title'=>$request->title,
-            'id_deskripsi'=>$request->id_deskripsi
+            'title'        => $request->title,
+            'id_deskripsi' => $request->id_deskripsi
         ]);
 
         return redirect('/buktikerja')->withToastSuccess('Created Successfully!');
@@ -84,14 +84,14 @@ class BuktiKerjaController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'=>'required',
-            'id_deskripsi'=>'required',
+            'title'        => 'required',
+            'id_deskripsi' => 'required',
 
         ]);
 
         BuktiKerja::where('id',$id)->update([
-            'title'=>$request->title,
-            'id_deskripsi'=>$request->id_deskripsi,
+            'title'        => $request->title,
+            'id_deskripsi' => $request->id_deskripsi,
         ]);
         return redirect('/buktikerja')->withToastSuccess('Updated Successfully!');
     }
@@ -104,7 +104,7 @@ class BuktiKerjaController extends Controller
      */
     public function destroy($id)
     {
-        BuktiKerja::where('id',$id)->delete();
+        BuktiKerja:: where('id',$id)->delete();
         return redirect('/buktikerja')->withToastSuccess('Deleted Successfully!');
     }
 }

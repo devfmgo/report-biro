@@ -37,12 +37,12 @@ class BulanController extends Controller
     public function store(Request $request)
     {
        $request->validate([
-           'tanggal'=>'required'
+           'tanggal' => 'required'
        ]);
 
        Bulan::create([
-           'tanggal'=>$request->tanggal,
-           'users_id'=>Auth::user()->id
+           'tanggal'  => $request->tanggal,
+           'users_id' => Auth::user()->id
        ]);
        return redirect('/history')->withToastSuccess('Created Successfully');
     }
@@ -80,28 +80,28 @@ class BulanController extends Controller
     public function update(Request $request, $id)
     {
         switch ($request->action) {
-            case 1:
+            case 1: 
                 $request->validate([
-                'tanggal'=>'required'
+                'tanggal' => 'required'
                 ]);
                 Bulan::find($id)->update([
-                    'tanggal'=>$request->tanggal,
+                    'tanggal' => $request->tanggal,
                 ]);
                 return redirect('/history')->withToastSuccess('Updated Successfully');
                 break;
-            case 2:
-                Bulan::find($id)->update([
-                    'archive'=>1,
+            case 2     : 
+                 Bulan:: find($id)->update([
+                    'archive' => 1,
                 ]);
                 return redirect('/history')->withToastSuccess('Archived Successfully');
                 break;
-            case 3:
-                Bulan::find($id)->update([
-                    'archive'=>0,
+            case 3     : 
+                 Bulan:: find($id)->update([
+                    'archive' => 0,
                 ]);
                 return redirect('/archive')->withToastSuccess('Unarchived Successfully');
                 break;
-            default:
+            default: 
                 # code...
                 break;
         }

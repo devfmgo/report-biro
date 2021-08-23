@@ -37,11 +37,11 @@ class DeskripsiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required'
+            'title' => 'required'
         ]);
 
         Deskripsi::create([
-            'title'=>$request->title
+            'title' => $request->title
         ]);
         return redirect('/deskripsi')->withToastSuccess('Created Successfully!');
     }
@@ -78,11 +78,11 @@ class DeskripsiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'=>'required'
+            'title' => 'required'
         ]);
 
         Deskripsi::where('id',$id)->update([
-            'title'=>$request->title
+            'title' => $request->title
         ]);
         return redirect('/deskripsi')->withToastSuccess('Updated Successfully!');
     }
@@ -95,7 +95,7 @@ class DeskripsiController extends Controller
      */
     public function destroy($id)
     {
-        Deskripsi::where('id',$id)->delete();
+        Deskripsi:: where('id',$id)->delete();
         return redirect('/deskripsi')->withToastSuccess('Deleted Successfully!');
     }
 }
