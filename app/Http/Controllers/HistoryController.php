@@ -21,7 +21,6 @@ class HistoryController extends Controller
     public function index()
     {
 
-        
         $kerja = BuktiKerja::with('deskripsi')->get();
         $biro  = UnitKerja::with('biro')->user()->first();
         $bulan = Bulan::with('user')
@@ -174,11 +173,10 @@ class HistoryController extends Controller
         ->join('biro','unit_kerja.biro_id','=','biro.id')
         ->where('role_id',2)
         ->get();
-      
         $report = DB::table('history')
                     ->join('users','history.users_id','=','users.id')
                     ->join('bulan','history.id_bulan','=','bulan.id')
                     ->get();
-       return view('reportbiro.index',compact('report','users'));
+       return view('reportbiro.index',compact('report','users'))->with('bulan',Bulan::all());
     }
 }

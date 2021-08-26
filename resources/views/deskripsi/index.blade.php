@@ -15,7 +15,6 @@
                     <table class="min-w-max w-full table-auto">
                         <thead>
                             <tr class=" text-white bg-indigo-400 uppercase text-xs font-semibold leading-normal">
-
                                 <th class="py-3 px-6 text-left">Deskripsi</th>
                                 <th class="py-3 px-6 text-center">Actions</th>
                             </tr>
@@ -114,7 +113,6 @@
                                                         </div>
                                                     </div>
 
-
                                                 </div>
                                             </div>
                                         </div>
@@ -125,7 +123,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
 
             </div>

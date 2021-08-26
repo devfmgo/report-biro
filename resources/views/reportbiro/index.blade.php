@@ -44,11 +44,10 @@
                                     </td>
 
                                     <td class="py-3 px-6 text-left">
-
                                         {{ $user->nama_biro }}
                                     </td>
                                     <td class="py-3 px-6 text-center">
-                                        1
+                                        {{$bulan->where('users_id',$user->id)->count()}}
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         10%

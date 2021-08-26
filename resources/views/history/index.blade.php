@@ -76,8 +76,6 @@
 
                                 <span class="text-gray-600 font-semibold">Report Laporan <label
                                         class="bg-yellow-100 rounded-full p-2 text-gray-900">{{ Carbon\Carbon::parse($databulan->tanggal)->translatedFormat('F Y') }}</label></span>
-
-
                                 <label
                                     class="bg-indigo-200 p-2 rounded-full shadow-sm cursor-pointer hover:bg-indigo-400"
                                     onclick="toggleModal('modal-id{{ $databulan->id }}')">
@@ -163,10 +161,10 @@
                                             @forelse ($historyP1 as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
-                                                    $data_hasil = json_decode($datahistory->P2);
+                                                    $data_hasil  = json_decode($datahistory->P2);
                                                 @endphp
                                                 @if ($datahistory->id_bukti_kerja === $datakerja->id && $datahistory->id_bulan === $databulan->id)
-                                                    <div class="bg-green-100 rounded-full flex p-2">
+                                                    <div class="bg-green-100 rounded-full flex p-2 items-center">
                                                         <span class="text-green-700 font-bold ">
                                                             {{ $d1 = $data_target->target_p1 }}</span> /
                                                         <span class="{{ $data_target->target_p1 == $data_hasil->hasil_p1 ? 'text-green-700' : 'text-red-500' }}
@@ -192,7 +190,7 @@
                                             @forelse ($historyP2->where('id_bukti_kerja', $datakerja->id)->where('id_bulan', $databulan->id) as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
-                                                    $data_hasil = json_decode($datahistory->P2);
+                                                    $data_hasil  = json_decode($datahistory->P2);
                                                 @endphp
                                                 @if ($datahistory->id_bukti_kerja === $datakerja->id && $datahistory->id_bulan === $databulan->id)
                                                     <div class="bg-green-100 rounded-full flex p-2"><span
@@ -217,7 +215,7 @@
                                             @forelse ($historyP3 as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
-                                                    $data_hasil = json_decode($datahistory->P2);
+                                                    $data_hasil  = json_decode($datahistory->P2);
                                                 @endphp
                                                 @if ($datahistory->id_bukti_kerja === $datakerja->id && $datahistory->id_bulan === $databulan->id)
                                                     <div class="bg-green-100 rounded-full flex p-2"> <span
@@ -242,7 +240,7 @@
                                             @forelse ($historyP4 as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
-                                                    $data_hasil = json_decode($datahistory->P2);
+                                                    $data_hasil  = json_decode($datahistory->P2);
                                                 @endphp
 
                                                 @if ($datahistory->id_bukti_kerja === $datakerja->id && $datahistory->id_bulan === $databulan->id)
@@ -268,7 +266,7 @@
                                             @forelse ($historyP5 as $datahistory)
                                                 @php
                                                     $data_target = json_decode($datahistory->P1);
-                                                    $data_hasil = collect(json_decode($datahistory->P2));
+                                                    $data_hasil  = collect(json_decode($datahistory->P2));
                                                 @endphp
                                                 <div
                                                     class="bg-yellow-200 rounded-full p-2 font-bold text-gray-900 text-center">
