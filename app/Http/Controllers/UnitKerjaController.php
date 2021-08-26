@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\UnitKerja;
 use App\Models\Biro;
+use App\Models\User;
 use Alert;
 class UnitKerjaController extends Controller
 {
@@ -26,7 +27,7 @@ class UnitKerjaController extends Controller
      */
     public function create()
     {
-        return view('unitkerja.create')->with('biro',Biro::all());
+        return view('unitkerja.create')->with('biro',Biro::all())->with('users',User::all());
     }
 
     /**
@@ -38,13 +39,21 @@ class UnitKerjaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'biro_id' => 'required'
+              'biro_id'  => 'required',
+              'users_id' => 'required'
         ]);
-
-        UnitKerja::create([
-            'biro_id'  => $request->biro_id,
-            'users_id' => Auth::user()->id
-        ]);
+        $cekuser = UnitKerja::where('users_id',$request->users_id)->get();
+        if ($cekuser) {
+            UnitKerja::where('users_id',$request->users_id)->update([
+                'biro_id' => $request->biro_id
+            ]);
+        }else{
+            UnitKerja::create([
+                'biro_id'  => $request->biro_id,
+                'users_id' => $request->users_id
+            ]);
+        }
+        
 
         return redirect('/unitkerja')->withToastSuccess('Created Successfully!');
     }

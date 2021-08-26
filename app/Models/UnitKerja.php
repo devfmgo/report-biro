@@ -22,8 +22,4 @@ class UnitKerja extends Model
         return $this->belongsTo(Biro::class, 'biro_id');
     }
 
-    public function scopeUser($query){
-        
-        return $query->where('users_id',Auth::user()->id);
-    }
 }

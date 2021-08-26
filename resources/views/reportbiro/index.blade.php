@@ -50,7 +50,7 @@
                                         {{$bulan->where('users_id',$user->id)->count()}}
                                     </td>
                                     <td class="py-3 px-6 text-center">
-                                        10%
+                                       {{$report->where('users_id',$user->id)->count()}}
                                     </td>
 
                                     <td class="py-3 px-6 text-left w-32">

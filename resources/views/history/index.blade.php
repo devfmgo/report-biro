@@ -27,7 +27,6 @@
                                 Deskripsi</th>
                             <th class="p-2  text-indigo-400 uppercase border-b-2 border-gray-300 hidden lg:table-cell ">
                                 List Kerja</th>
-
                     </thead>
                     <tbody>
                         @foreach ($kerja as $datakerja)

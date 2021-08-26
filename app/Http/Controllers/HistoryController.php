@@ -94,6 +94,7 @@ class HistoryController extends Controller
      */
     public function show($id)
     {
+        
         //
     }
 
@@ -177,6 +178,7 @@ class HistoryController extends Controller
                     ->join('users','history.users_id','=','users.id')
                     ->join('bulan','history.id_bulan','=','bulan.id')
                     ->get();
+                   
        return view('reportbiro.index',compact('report','users'))->with('bulan',Bulan::all());
     }
 }
